@@ -21,6 +21,7 @@ class InventoryApp
 
   def main_menu
     answer = self.prompt.select("Main Menu") do |menu|
+        menu.choice "View Summary", -> {self.summary}
         menu.choice "View All Items", -> {self.all_items_display}
         menu.choice "Add an Item", -> {self.create_item}
         menu.choice "Edit Items", -> {self.edit_item}
@@ -28,6 +29,51 @@ class InventoryApp
         menu.choice "Filter Items", -> {self.filter_items}
         menu.choice "Exit", -> {exit}
     end
+  end
+
+  def summary
+    puts "Total Number of Items: #{Item.count}"
+    puts "Total Count of Items: #{Item.total_count}"
+
+    puts "Total Number of International Items: #{Item.tag_total_number("International")}"
+    puts "Total Count of International Items: #{Item.tag_total_count("International")}"
+
+    puts "Total Number of Domestic Items: #{Item.tag_total_number("Domestic")}"
+    puts "Total Count of Domestic Items: #{Item.tag_total_count("Domestic")}"
+
+    puts "----------##########---------"
+
+    puts "Count Summaries based on Categories: "
+    puts "-- Clothing: #{Item.category_count("Clothing")}"
+    puts "-- Food: #{Item.category_count("Food")}"
+    puts "-- Drinks: #{Item.category_count("Drinks")}"
+    puts "-- Books: #{Item.category_count("Books")}"
+    puts "-- Entertainment: #{Item.category_count("Entertainment")}"
+    puts "-- Health: #{Item.category_count("Health")}"
+    puts "-- Personal Care: #{Item.category_count("Personal Care")}"
+    puts "-- Office: #{Item.category_count("Office")}"
+    puts "-- Sports: #{Item.category_count("Sports")}"
+    puts "-- Tools: #{Item.category_count("Tools")}"
+    puts "-- Art: #{Item.category_count("Art")}"
+    puts "-- Other: #{Item.category_count("Other")}"
+
+    puts "----------##########---------"
+
+    puts "Summary based on Producing Countries: "
+    puts "-- Ethiopia: #{Item.produced_in_count("Ethiopia")}"
+    puts "-- China: #{Item.produced_in_count("China")}"
+    puts "-- India: #{Item.produced_in_count("India")}"
+    puts "-- Germany: #{Item.produced_in_count("Germany")}"
+    puts "-- United States: #{Item.produced_in_count("United States")}"
+    puts "-- Japan: #{Item.produced_in_count("Japan")}"
+    puts "-- Nigeria: #{Item.produced_in_count("Nigeria")}"
+    puts "-- South Korea: #{Item.produced_in_count("South Korea")}"
+    puts "-- Indonesia: #{Item.produced_in_count("Indonesia")}"
+    puts "-- France: #{Item.produced_in_count("France")}"
+    puts "-- Italy: #{Item.produced_in_count("Italy")}"
+    puts "-- United Kingdom: #{Item.produced_in_count("United Kingdom")}"
+
+    self.main_menu
   end
 
   def create_item
