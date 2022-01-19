@@ -1,24 +1,30 @@
+# Requiring classes and functionalities needed for the code below
 require_relative '../config/environment'
 require 'tty-prompt'
 
 class InventoryApp
-  # it is not an AR class so you need to add attr
+  
+  # To access other classes
   attr_accessor :prompt, :items
 
+  # A method to initialize the TTY prompt class
   def initialize
     @prompt = TTY::Prompt.new
   end
-
+  
+  # A method to display the logo/title of the app
   def title_print
     font = TTY::Font.new(:doom)
     puts font.write("INVENTORY   APP", letter_spacing: 4)
   end
 
+  # A greeting message with the logo/title
   def greeting
     self.title_print
     puts "Welcome to INVENTORY APP! A new innovative way to manage your items. For any logistics company!!"
   end
 
+  # A main menu with several different selectable options
   def main_menu
     answer = self.prompt.select("Main Menu") do |menu|
         menu.choice "View Summary", -> {self.summary}
@@ -31,6 +37,7 @@ class InventoryApp
     end
   end
 
+  # A method that displays a basic summary of the data
   def summary
     puts "Total Number of Items: #{Item.count}"
     puts "Total Count of Items: #{Item.total_count}"
@@ -76,6 +83,7 @@ class InventoryApp
     self.main_menu
   end
 
+  # A method to add a new item to the inventory
   def create_item
     result = self.prompt.collect do
       key(:name).ask("Name: ", required: true)
@@ -96,6 +104,7 @@ class InventoryApp
     
   end
 
+  # A method to delete an item from the inventory
   def delete_item
     answer = self.prompt.select("Pick an item to delete") do |menu|
         Item.all.map{
@@ -109,6 +118,7 @@ class InventoryApp
     self.main_menu
   end
 
+  # A method to display all the items in the inventory
   def all_items_display
 
     table = TTY::Table.new(header: ["Name", "Brand", "Count", "Tag", "Category", "Weight", "Produced By", "Produced In"]) do |t|
@@ -133,6 +143,7 @@ class InventoryApp
     self.main_menu
   end
 
+  # A method to select which items to edit from the inventory
   def edit_item
     answer = self.prompt.select("Pick an item to edit") do |menu|
       Item.all.map{
@@ -143,6 +154,7 @@ class InventoryApp
     end
   end
 
+  # A helper method to edit different attributes of items in the inventory
   def edit_interface(item_id)
     selected_items = Item.all.select{
       |item| item.id == item_id
@@ -179,6 +191,7 @@ class InventoryApp
 
   end
 
+  # A helper method to accept the new edited values of the different attributes of items
   def edit_input(selected_item, datatype)
 
     if datatype == "Name"
@@ -231,6 +244,7 @@ class InventoryApp
 
   end
 
+  # A helper method to accept user input for fields that have restricted options
   def edit_input_choice(selected_item, datatype)
     if datatype == "Tag"
       puts "Current Tag: #{selected_item.tag}"
@@ -261,6 +275,7 @@ class InventoryApp
 
   end
 
+  # A helper method to edit tags of items
   def tag_edit(selected_item, new_tag)
     selected_item.tag = new_tag
     selected_item.save
@@ -269,6 +284,7 @@ class InventoryApp
     self.main_menu
   end
 
+  # A helper method to edit the categories of items
   def category_edit(selected_item, new_category)
     selected_item.category = new_category
     selected_item.save
@@ -277,6 +293,7 @@ class InventoryApp
     self.main_menu
   end
 
+  # A method to filter items based on their attributes
   def filter_items
     
     brand = ""
@@ -303,19 +320,16 @@ class InventoryApp
 
   end
 
+  # A helper method that does the filtering based on the attributes specified by users
   def filter(brand, tag, category, produced_by, produced_in)
     filtered_items = Array.new
-
     brand_filtered_items = Array.new
-
     tag_filtered_items = Array.new
-
     category_filtered_items = Array.new
-
     produced_by_filtered_items = Array.new
-
     produced_in_filtered_items = Array.new
 
+    # For the following conditionals, "" indicates that the user did not filter with that specific field
     if brand != ""
       brand_filtered_items = Item.all.select{
         |item| item.brand == brand
@@ -399,12 +413,13 @@ class InventoryApp
 
     end
 
+    # No results were found
     if filtered_items == nil
       puts "No results were found!"
       self.filter_items
 
     else
-      puts "SIZE: #{filtered_items == nil}"
+      # Displaying results as a table
       table = TTY::Table.new(header: ["Name", "Brand", "Count", "Tag", "Category", "Weight", "Produced By", "Produced In"]) do |t|
         filtered_items.each{ |item|
             items_array = Array.new
@@ -423,15 +438,14 @@ class InventoryApp
       end
       
       puts table.render(:ascii)
-  
       self.main_menu
     end
   end
 
+  # A method to colorfully display a notification about the successful completion of certain tasks/operations
   def success_interface(sentence)
     success_box = TTY::Box.success(sentence)
     print success_box
   end
-
 
 end

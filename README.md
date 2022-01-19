@@ -66,7 +66,6 @@ When using the Inventory App, you can use your arrow keys to move the up and dow
 
 # NEXT TASK
 - CLEAN UP CODE
-- CLEAN UP THE INTERFACES [ADD SUCCESS STUFF]
 - Add some more cleaner instructions
 - Add FILE STRUCTURE
 - Test it out and include a gif demo
