@@ -53,12 +53,6 @@ In case you run onto an error while calling the command above, try installing ea
 gem install name_of_gem
 ```
 
-### Seeding the Database
-Before going ahead and starting the program, you may want to have some random data already in the inventory so as to have a better idea of the overall functionality of the app.
-```Ruby
-rake db:seed
-```
-
 ### Running the Program
 To run the program, call the following while you are still in the project's directory on your terminal:
 
@@ -68,3 +62,12 @@ ruby ./bin/run.rb
 
 ### Using Inventory App
 When using the Inventory App, you can use your arrow keys to move the up and down for multiple choice prompts. For some direct inputs, you are asked to input the respective information (i.e. in cases of adding information about a new entry or editing the information of an existing entry).
+
+
+# NEXT TASK
+- CLEAN UP CODE
+- CLEAN UP THE INTERFACES [ADD SUCCESS STUFF]
+- Add some more cleaner instructions
+- Add FILE STRUCTURE
+- Test it out and include a gif demo
+- MENTION RUNNING IT ON AN INDEPENDENT TERMINAL MAY BE BETTER THAN JUST RUNNING IT ON AN INTEGRATED TERMINAL LIKE ON VS CODE FOR BETTER VISUALS AND TABLE DISPLAY

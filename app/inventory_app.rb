@@ -21,10 +21,10 @@ class InventoryApp
 
   def main_menu
     answer = self.prompt.select("Main Menu") do |menu|
-        menu.choice "Create an Item", -> {self.create_item}
+        menu.choice "View All Items", -> {self.all_items_display}
+        menu.choice "Add an Item", -> {self.create_item}
         menu.choice "Edit Items", -> {self.edit_item}
-        menu.choice "Delete an Item", -> {self.delete_item} # DONE
-        menu.choice "View All Items", -> {self.all_items_display} # DONE
+        menu.choice "Delete an Item", -> {self.delete_item}
         menu.choice "Filter Items", -> {self.filter_items}
         menu.choice "Exit", -> {exit}
     end
@@ -43,7 +43,7 @@ class InventoryApp
     end
 
     if Item.create(result)
-      puts "Successfully created new item!"
+      self.success_interface("Successfully created a new item!")
     end
 
     self.all_items_display
@@ -59,6 +59,7 @@ class InventoryApp
             menu.choice "Cancel", -> {self.main_menu}
     end
 
+    self.success_interface("Successfully deleted item!")
     self.main_menu
   end
 
@@ -178,6 +179,8 @@ class InventoryApp
     end
 
     selected_item.save
+
+    self.success_interface("Successfully edited item!")
     self.main_menu
 
   end
@@ -215,7 +218,8 @@ class InventoryApp
   def tag_edit(selected_item, new_tag)
     selected_item.tag = new_tag
     selected_item.save
-    
+
+    self.success_interface("Successfully edited item!")    
     self.main_menu
   end
 
@@ -223,6 +227,7 @@ class InventoryApp
     selected_item.category = new_category
     selected_item.save
 
+    self.success_interface("Successfully edited item!")
     self.main_menu
   end
 
@@ -375,7 +380,11 @@ class InventoryApp
   
       self.main_menu
     end
+  end
 
+  def success_interface(sentence)
+    success_box = TTY::Box.success(sentence)
+    print success_box
   end
 
 

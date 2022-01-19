@@ -7,14 +7,8 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 gem "faker"
-# gem "rest-client"
-
-gem "colorize", "~> 0.8.1"
-
-gem "rest-client", "~> 2.1"
 
 gem "tty-prompt"
 gem "tty-table"
-gem "tty-color"
 gem "tty-box"
 gem 'tty-font'
