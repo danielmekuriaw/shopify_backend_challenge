@@ -68,22 +68,39 @@ When using the Inventory App, you can use your arrow keys to move the up and dow
 ### File Structure
 .
 ├── Gemfile
+|
 ├── Gemfile.lock
+|
 ├── README.md
+|
 ├── Rakefile
+|
 ├── app
+|   |
 │   ├── inventory_app.rb
+|   |
 │   └── models
+|       |
 │       └── item.rb
+|
 ├── bin
+|   |
 │   └── run.rb
+|
 ├── config
+|   |
 │   └── environment.rb
+|
 └── db
+    |
     ├── development.db
+    |
     ├── migrate
+    |   |
     │   └── 2022_create_items.rb
+    |
     ├── schema.rb
+    |
     └── seeds.rb
 
 # NEXT TASK
