@@ -88,9 +88,9 @@ class InventoryApp
     result = self.prompt.collect do
       key(:name).ask("Name: ", required: true)
       key(:brand).ask("Brand: ", required: true)
-      key(:count).ask("Count: ", required: true)
-      key(:tag).ask("Tag: ", required: true)
-      key(:category).ask("Category: ", required: true)
+      key(:count).ask("Count (Please input a valid positive integer value): ", required: true)
+      key(:tag).ask("Tag (Input 'International' or 'Domestic'): ", required: true)
+      key(:category).ask("Category (Pick and Input one of the following: 'Clothing', 'Food', 'Drinks', 'Books', 'Entertainment', 'Electronics', 'Health', 'Personal Care', 'Office', 'Sports', 'Tools', 'Art' or 'Other'): ", required: true)
       key(:weight).ask("Weight (Enter a valid numeric value - i.e. > 0): ", convert: :float, required: true)
       key(:produced_by).ask("Produced By: ", required: true)
       key(:produced_in).ask("Produced In: ", required: true)

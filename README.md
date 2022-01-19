@@ -61,12 +61,30 @@ ruby ./bin/run.rb
 ```
 
 ### Using Inventory App
-When using the Inventory App, you can use your arrow keys to move the up and down for multiple choice prompts. For some direct inputs, you are asked to input the respective information (i.e. in cases of adding information about a new entry or editing the information of an existing entry).
+When using the Inventory App, you can use your arrow keys to move the up and down for multiple choice prompts. For some direct inputs, you are asked to input the respective information (i.e. in cases of adding information about a new entry or editing the information of an existing entry). Make sure to follow the directions for each type of input. Due to the limited time of development, the program may crash in cases of unexpected invalid inputs. So please follow the instructions for each prompt closely (including how tags and categories are spelled - all begin with upper cases) to experience the functionalities of this application to the fullest.
 
+**Tip:** To have a better display of some of the visual features, open it on an independent terminal and set it to full-screen. If you try to open it with certain integrated terminals, some of the tables and displays will not be well-formatted.
+
+### File Structure
+.
+├── Gemfile
+├── Gemfile.lock
+├── README.md
+├── Rakefile
+├── app
+│   ├── inventory_app.rb
+│   └── models
+│       └── item.rb
+├── bin
+│   └── run.rb
+├── config
+│   └── environment.rb
+└── db
+    ├── development.db
+    ├── migrate
+    │   └── 2022_create_items.rb
+    ├── schema.rb
+    └── seeds.rb
 
 # NEXT TASK
-- CLEAN UP CODE
-- Add some more cleaner instructions
-- Add FILE STRUCTURE
 - Test it out and include a gif demo
-- MENTION RUNNING IT ON AN INDEPENDENT TERMINAL MAY BE BETTER THAN JUST RUNNING IT ON AN INTEGRATED TERMINAL LIKE ON VS CODE FOR BETTER VISUALS AND TABLE DISPLAY
