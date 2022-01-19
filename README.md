@@ -1,6 +1,6 @@
-# Shopify Backend Challenge
+# Shopify Backend Challenge (Inventory App)
 
-## Developed By: [Daniel Mekuriaw](https://github.com/danielmekuriaw)
+### Developed By: [Daniel Mekuriaw](https://github.com/danielmekuriaw)
 
 ## Description
 
@@ -16,3 +16,39 @@
 
 **ONE OF THE OPTIONAL FEATURES (I chose the following):**
 - Filtering based on fields/inventory count/tags/other metadata
+
+## Inventory App
+
+This CLI (Command-line interface) application is a simple interactive application that allows users to create and manage an inventory of the different items they may have. It allows users to add, edit, delete, view and filter the items in the inventory.
+
+This project is developed using **Ruby**, **ActiveRecord** and **SQLite3**. For the sake of simplicity and due to the limited amount of time for development, it makes use of data from the **Faker** Ruby gem to seed some data in the database, outside of accepting direct user inputs.
+
+### Gems
+
+* **sinatra-activerecord** - for accessing databases
+* **sqlite3** - for database management
+* **pry** - for debugging during development
+* **require_all** - for accessing files from within different directories of the program
+* **faker** - for generating random data
+* **tty-prompt** - for accepting user inputs in different formats
+* **tty-table** - for displaying data in a table
+* **tty-box** - for displaying data in a box
+* **tty-font** - for creating the **INVENTORY APP** logo that appears at the start of the program
+
+### Setup Instructions
+
+**NOTE:** *Make sure you have properly installed Ruby on your terminal. Follow the instructions below after verifying that you have correctly installed ruby through the following command. It should return a Ruby version if you have Ruby installed.*
+
+```Ruby
+ruby --version
+```
+
+The next step is installing the required gems. This can be done with the following command:
+```Ruby 
+bundle install
+```
+
+In case you run onto an error while calling the command above, try installing each gem individually as follows:
+```Ruby
+gem install name_of_gem
+```
