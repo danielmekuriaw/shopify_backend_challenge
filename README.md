@@ -1,5 +1,7 @@
 # Shopify Backend Challenge
 
+## Developed By: [Daniel Mekuriaw](https://github.com/danielmekuriaw)
+
 ## Description
 
 **TASK:** Build an inventory tracking web application for a logistics company. We are looking for a web application that meets the requirements listed below, along with one additional feature, with the options also listed below. 
