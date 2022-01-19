@@ -37,7 +37,7 @@ This project is developed using **Ruby**, **ActiveRecord** and **SQLite3**. For 
 
 ### Setup Instructions
 
-**NOTE:** *Make sure you have properly installed Ruby on your terminal. Follow the instructions below after verifying that you have correctly installed ruby through the following command. It should return a Ruby version if you have Ruby installed.*
+**NOTE:** *Make sure you have properly installed Ruby on your terminal. Follow the instructions below after verifying that you have correctly installed ruby through the following command. It should return a Ruby version if you have Ruby installed. If you do not have Ruby installed, follow the instructions, download and install the version compatible with your device from [here](https://www.ruby-lang.org/en/downloads/)*
 
 ```Ruby
 ruby --version
