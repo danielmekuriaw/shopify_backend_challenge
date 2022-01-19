@@ -67,7 +67,6 @@ When using the Inventory App, you can use your arrow keys to move the up and dow
 
 ### File Structure
 .
-
 ├── Gemfile
 
 ├── Gemfile.lock
@@ -93,6 +92,7 @@ When using the Inventory App, you can use your arrow keys to move the up and dow
 │   └── environment.rb
 
 └── db
+
     ├── development.db
 
     ├── migrate
