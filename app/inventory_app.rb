@@ -239,12 +239,12 @@ class InventoryApp
     while condition do
 
       answer = self.prompt.select("Set up filter") do |menu|
-        menu.choice "Brand", -> {puts "Brand: #{brand = gets}"}
-        menu.choice "Tag", -> {puts "Tag: #{brand = gets}"}
-        menu.choice "Category", -> {puts "Tag: #{brand = gets}"}
-        menu.choice "Produced by", -> {puts "Brand: #{brand = gets}"}
-        menu.choice "Produced in", -> {puts "Brand: #{brand = gets}"}
-        menu.choice "DONE", -> {self.filter(brand, tag, category, produced_by, produced_in)}
+        menu.choice "Brand", -> {puts "Brand: #{brand = gets.chomp}"}
+        menu.choice "Tag", -> {puts "Tag: #{tag = gets.chomp}"}
+        menu.choice "Category", -> {puts "Tag: #{category = gets.chomp}"}
+        menu.choice "Produced by", -> {puts "Produced By: #{produced_by = gets.chomp}"}
+        menu.choice "Produced in", -> {puts "Produced In: #{produced_in = gets.chomp}"}
+        menu.choice "FILTER", -> {self.filter(brand, tag, category, produced_by, produced_in)}
         menu.choice "Cancel", -> {self.main_menu}
       end
 
@@ -256,73 +256,104 @@ class InventoryApp
     filtered_items = Array.new
 
     brand_filtered_items = Array.new
+
     tag_filtered_items = Array.new
+
     category_filtered_items = Array.new
+
     produced_by_filtered_items = Array.new
+
     produced_in_filtered_items = Array.new
 
     if brand != ""
-      brand_filtered_items = Item.all.find_by(brand: brand)
+      brand_filtered_items = Item.all.select{
+        |item| item.brand == brand
+      }
       
-      if (filtered_items.length() == 0)
+      if (filtered_items != nil)
         filtered_items = brand_filtered_items
       else
-        filtered_items = filtered_items & brand_filtered_items
+        if brand_filtered_items != nil
+          filtered_items = filtered_items & brand_filtered_items
+        end
       end
 
     end
 
     if tag != ""
-      tag_filtered_items = Item.all.find_by(tag: tag)
+      tag_filtered_items = Item.all.select{
+        |item| item.tag == tag
+      }
 
-      if (filtered_items.length() == 0)
+      if (filtered_items != nil)
         filtered_items = tag_filtered_items
       else
-        filtered_items = filtered_items & tag_filtered_items
+
+        if tag_filtered_items != nil
+          filtered_items = filtered_items & tag_filtered_items
+        end
+
       end
 
     end
 
     if category != ""
-      category_filtered_items = Item.all.find_by(category: category)
+      category_filtered_items = Item.all.select{
+        |item| item.category == category
+      }
 
-      if (filtered_items.length() == 0)
+      if (filtered_items != nil)
         filtered_items = category_filtered_items
       else
-        filtered_items = filtered_items & category_filtered_items
+
+        if category_filtered_items != nil
+          filtered_items = filtered_items & category_filtered_items
+        end
+
       end
 
     end
 
     if produced_by != ""
-      produced_by_filtered_items = Item.all.find_by(produced_by: produced_by)
+      produced_by_filtered_items = Item.all.select{
+        |item| item.produced_by == produced_by
+      }
 
-      if (filtered_items.length() == 0)
+      if (filtered_items != nil)
         filtered_items = produced_by_filtered_items
       else
-        filtered_items = filtered_items & produced_by_filtered_items
+
+        if produced_by_filtered_items != nil
+          filtered_items = filtered_items & produced_by_filtered_items
+        end
+
       end
 
     end
 
     if produced_in != ""
-      produced_in_filtered_items = Item.all.find_by(produced_in: produced_in)
+      produced_in_filtered_items = Item.all.select{
+        |item| item.produced_in == produced_in
+      }
 
-      if (filtered_items.length() == 0)
+      if (filtered_items != nil)
         filtered_items = produced_in_filtered_items
       else
-        filtered_items = filtered_items & produced_in_filtered_items
+
+        if produced_in_filtered_items != nil
+          filtered_items = filtered_items & produced_in_filtered_items
+        end
+
       end
 
     end
 
-   
-    if filtered_items.length() == 0
+    if filtered_items == nil
       puts "No results were found!"
       self.filter_items
 
     else
-
+      puts "SIZE: #{filtered_items == nil}"
       table = TTY::Table.new(header: ["Name", "Brand", "Count", "Tag", "Category", "Weight", "Produced By", "Produced In"]) do |t|
         filtered_items.each{ |item|
             items_array = Array.new
