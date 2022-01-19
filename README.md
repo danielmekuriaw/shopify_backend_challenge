@@ -43,7 +43,7 @@ This project is developed using **Ruby**, **ActiveRecord** and **SQLite3**. For 
 ruby --version
 ```
 
-The next step is installing the required gems. This can be done with the following command:
+The next step is installing the required gems. Once you are inside the directory of this project, this can be done with the following command:
 ```Ruby 
 bundle install
 ```
@@ -52,3 +52,12 @@ In case you run onto an error while calling the command above, try installing ea
 ```Ruby
 gem install name_of_gem
 ```
+
+### Running the Program
+To run the program, call the following while you are still in the project's directory on your terminal:
+
+```Ruby
+ruby ./bin/run.rb
+```
+
+### Using Inventory App
