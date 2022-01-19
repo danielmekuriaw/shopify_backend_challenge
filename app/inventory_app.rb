@@ -304,8 +304,8 @@ class InventoryApp
 
     condition = true
 
+    # Setting attributes
     while condition do
-
       answer = self.prompt.select("Set up filter") do |menu|
         menu.choice "Brand", -> {puts "Brand: #{brand = gets.chomp}"}
         menu.choice "Tag", -> {puts "Tag: #{tag = gets.chomp}"}
@@ -315,7 +315,6 @@ class InventoryApp
         menu.choice "FILTER", -> {self.filter(brand, tag, category, produced_by, produced_in)}
         menu.choice "Cancel", -> {self.main_menu}
       end
-
     end
 
   end
@@ -331,14 +330,15 @@ class InventoryApp
 
     # For the following conditionals, "" indicates that the user did not filter with that specific field
     if brand != ""
+
       brand_filtered_items = Item.all.select{
         |item| item.brand == brand
       }
       
-      if (filtered_items != nil)
+      if (filtered_items.length() == 0)
         filtered_items = brand_filtered_items
       else
-        if brand_filtered_items != nil
+        if brand_filtered_items.length() > 0
           filtered_items = filtered_items & brand_filtered_items
         end
       end
@@ -350,11 +350,11 @@ class InventoryApp
         |item| item.tag == tag
       }
 
-      if (filtered_items != nil)
+      if (filtered_items.length() == 0)
         filtered_items = tag_filtered_items
       else
 
-        if tag_filtered_items != nil
+        if tag_filtered_items.length() > 0
           filtered_items = filtered_items & tag_filtered_items
         end
 
@@ -367,11 +367,11 @@ class InventoryApp
         |item| item.category == category
       }
 
-      if (filtered_items != nil)
+      if (filtered_items.length() == 0)
         filtered_items = category_filtered_items
       else
 
-        if category_filtered_items != nil
+        if category_filtered_items.length() > 0
           filtered_items = filtered_items & category_filtered_items
         end
 
@@ -384,11 +384,11 @@ class InventoryApp
         |item| item.produced_by == produced_by
       }
 
-      if (filtered_items != nil)
+      if (filtered_items.length() == 0)
         filtered_items = produced_by_filtered_items
       else
 
-        if produced_by_filtered_items != nil
+        if produced_by_filtered_items.length() > 0
           filtered_items = filtered_items & produced_by_filtered_items
         end
 
@@ -401,11 +401,11 @@ class InventoryApp
         |item| item.produced_in == produced_in
       }
 
-      if (filtered_items != nil)
+      if (filtered_items.length() == 0)
         filtered_items = produced_in_filtered_items
       else
 
-        if produced_in_filtered_items != nil
+        if produced_in_filtered_items.length() > 0
           filtered_items = filtered_items & produced_in_filtered_items
         end
 
@@ -419,6 +419,7 @@ class InventoryApp
       self.filter_items
 
     else
+      puts "#{filtered_items.length()} results found"
       # Displaying results as a table
       table = TTY::Table.new(header: ["Name", "Brand", "Count", "Tag", "Category", "Weight", "Produced By", "Produced In"]) do |t|
         filtered_items.each{ |item|

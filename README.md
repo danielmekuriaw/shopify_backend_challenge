@@ -66,7 +66,7 @@ When using the Inventory App, you can use your arrow keys to move the up and dow
 **Tip:** To have a better display of some of the visual features, open it on an independent terminal and set it to full-screen. If you try to open it with certain integrated terminals, some of the tables and displays will not be well-formatted.
 
 ### File Structure
-.
+
 ├── Gemfile
 
 ├── Gemfile.lock
