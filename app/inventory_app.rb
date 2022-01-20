@@ -420,6 +420,7 @@ class InventoryApp
 
     else
       puts "#{filtered_items.length()} results found"
+      
       # Displaying results as a table
       table = TTY::Table.new(header: ["Name", "Brand", "Count", "Tag", "Category", "Weight", "Produced By", "Produced In"]) do |t|
         filtered_items.each{ |item|
