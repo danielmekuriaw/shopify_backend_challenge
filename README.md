@@ -105,6 +105,3 @@ You can follow the following demo on how to use the application:
     ├── schema.rb
 
     └── seeds.rb
-
-# NEXT TASK
-- Test it out and include a gif demo
